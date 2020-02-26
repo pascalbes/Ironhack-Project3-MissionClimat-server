@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = new express.Router();
 const bcryptjs = require("bcryptjs");
 const axios = require('axios');
 const fs = require('fs');
@@ -35,26 +35,25 @@ router.get("/", (req, res, next) => {
   
         drive.files.copy({fileId: process.env.SPREADSHEET_MASTER_ID})
             .then(dbRes => {
-              console.log(dbRes)
               res.status(200).json({ data:dbRes.data.id })
             })
-            .catch(err=> {
-              console.log(err);
-              resolve(err)
-            })
+            .catch(res.status(500))
   
       }
   
   });
   
-  
-  
   router.patch("/update/:id", (req, res, next) => {
+
+    console.log("here")
+    console.log(req.body)
+
+    // ['Avec prolongation de la population'], ['Maintien des inégalités'], [40], [60], [45], [90],30],[18], [50],[30],[50],[2],[60],[80],[500000],[70],[30],[30],[50],[100],[85],[85],[85]
   
     const idSheet=req.params.id
     const values=req.body.values
-    const rangeParams = 'Params!B3:B14'
-    const rangeOutputs = 'Params!D3:G5'
+    const rangeParams = 'Paramètres!I3:I25'
+    const rangeOutputs = 'Résultats!A1:AN100'
 
   
     const TOKEN_PATH = 'tokenGSheet.json';
@@ -124,16 +123,11 @@ router.get("/", (req, res, next) => {
         })
         .then(response => {
           var rows=response.data.values
-          var results = {
-              r1: rows[0],
-              r2: rows[1],
-              r3: rows[2]
-          }
-          res.status(200).json({ data:results })
+          res.status(200).json({ data:rows })
         })
-        .catch(err => console.log(err))
+        .catch(res.status(500))
       })
-      .catch(err => console.log(err))
+      .catch(res.status(500))
   
     }
   
@@ -191,12 +185,10 @@ router.get("/", (req, res, next) => {
     
         drive.files.delete({fileId: idFile})
             .then(dbRes => {
-                console.log(dbRes)
                 res.status(200).json({ data:"File " + idFile + " deleted" })
             })
             .catch(err=> {
-                console.log(err);
-                resolve(err)
+              res.status(500)
             })
   
     }

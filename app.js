@@ -7,6 +7,7 @@ var logger = require('morgan');
 const cors = require("cors");
 
 var app = express();
+app.use(express.static(path.join(__dirname, 'public')));
 
 var corsOptions = {
     origin: process.env.FRONTEND_URI
@@ -15,10 +16,12 @@ var corsOptions = {
 app.use(cors(corsOptions))
 
 app.use(logger('dev'));
+app.use(express.urlencoded({
+  extended: true
+}));
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', require('./routes/users'));
 app.use('/sheet', require('./routes/gsheet'));
