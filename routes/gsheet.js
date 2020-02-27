@@ -1,3 +1,4 @@
+const getSimulatorResults = require('../public/javascripts/getSimulatorResults.js')
 const express = require("express");
 const router = new express.Router();
 const bcryptjs = require("bcryptjs");
@@ -44,9 +45,6 @@ router.get("/", (req, res, next) => {
   });
   
   router.patch("/update/:id", (req, res, next) => {
-
-    console.log("here")
-    console.log(req.body)
 
     // ['Avec prolongation de la population'], ['Maintien des inégalités'], [40], [60], [45], [90],30],[18], [50],[30],[50],[2],[60],[80],[500000],[70],[30],[30],[50],[100],[85],[85],[85]
   
@@ -98,13 +96,7 @@ router.get("/", (req, res, next) => {
      * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
      */
     
-  
-  
-  
-    //PARAMETRES
-  
     function main(auth) {
-  
   
       const sheets = google.sheets({version: 'v4', auth});
   
@@ -123,7 +115,8 @@ router.get("/", (req, res, next) => {
         })
         .then(response => {
           var rows=response.data.values
-          res.status(200).json({ data:rows })
+          console.log(rows)
+          res.status(200).json({ results:getSimulatorResults(rows) })
         })
         .catch(res.status(500))
       })
