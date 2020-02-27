@@ -10,7 +10,9 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 var corsOptions = {
-    origin: process.env.FRONTEND_URI
+    origin: process.env.FRONTEND_URI,
+    credentials: true,
+    optionsSuccessStatus: 200
   }
 
 app.use(cors(corsOptions))

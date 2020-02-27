@@ -35,7 +35,7 @@ router.get("/", (req, res, next) => {
   
         drive.files.copy({fileId: process.env.SPREADSHEET_MASTER_ID})
             .then(dbRes => {
-              res.status(200).json({ data:dbRes.data.id })
+              res.status(200).json({ id:dbRes.data.id })
             })
             .catch(res.status(500))
   
@@ -134,6 +134,9 @@ router.get("/", (req, res, next) => {
   })
 
   router.delete("/delete/:id", (req, res, next) => {
+
+    console.log(req.params.id)
+    console.log(req.body)
   
     const idFile=req.params.id
     const TOKEN_PATH = 'tokenGDrive.json';
