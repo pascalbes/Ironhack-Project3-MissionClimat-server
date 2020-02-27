@@ -115,7 +115,6 @@ router.get("/", (req, res, next) => {
         })
         .then(response => {
           var rows=response.data.values
-          console.log(rows)
           res.status(200).json({ results:getSimulatorResults(rows) })
         })
         .catch(res.status(500))
@@ -127,9 +126,6 @@ router.get("/", (req, res, next) => {
   })
 
   router.delete("/delete/:id", (req, res, next) => {
-
-    console.log(req.params.id)
-    console.log(req.body)
   
     const idFile=req.params.id
     const TOKEN_PATH = 'tokenGDrive.json';
