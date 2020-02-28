@@ -51,4 +51,4 @@ var iInital=i;
 
 }
 
-module.exports getLineChartInfos
+module.exports = getLineChartInfos
