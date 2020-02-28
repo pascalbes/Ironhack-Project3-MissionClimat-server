@@ -1,4 +1,4 @@
-function getLineChartInfos() {
+function getLineChartInfos(rows, i, j) {
 
 var iInital=i;
 
