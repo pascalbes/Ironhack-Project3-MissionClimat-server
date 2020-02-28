@@ -113,10 +113,10 @@ function main(auth) {
         // datas.push({name: rows[i][j]})
         
         var i=46
-        var iInital=i;
+        
         var j=0
 
-        console.log(rows[i][j])
+        var iInital=i;
 
         var datas = {}
         
@@ -156,7 +156,7 @@ function main(auth) {
             dataItem.name = rows[iInital][j]
 
             for (let k=0;k<datas.line.length;k++) {
-                rows[iInital+k][j] ? dataItem[datas.line[k].dataKey]=rows[iInital+k][j] : "kikou"
+                rows[iInital+1+k][j] ? dataItem[datas.line[k].dataKey]=rows[iInital+k+1][j] : "kikou"
             }
 
             datas.data.push(dataItem)

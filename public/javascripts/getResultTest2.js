@@ -100,7 +100,6 @@ function main(auth) {
         var i=13
         var j=0
 
-        console.log(rows[i][j])
 
         var datas = {}
         datas.data=[]
@@ -110,8 +109,6 @@ function main(auth) {
 
         j=3;
 
-        datas.push({name: rows[i][j]})
-        
 
         console.log(datas)
 
