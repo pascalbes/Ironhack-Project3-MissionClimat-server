@@ -104,7 +104,6 @@ function main(auth) {
 
 
         var datas = {}
-<<<<<<< HEAD
         datas.data02=[]
 
         function createData02() {for (let i = 14; i < 24; i ++) {
@@ -159,15 +158,6 @@ function main(auth) {
         calculateSectorsValue()
 
         console.log(datas.data01)
-=======
-        datas.data=[]
-
-        datas.title = rows[i+0][j+1]
-        datas.yTitle = rows[i+1][j+1]
-
-        j=3;
-
->>>>>>> 87ef69de26fe091fa8ba8840b4ab8cfd4ad1ff67
 
         console.log(datas)
 
