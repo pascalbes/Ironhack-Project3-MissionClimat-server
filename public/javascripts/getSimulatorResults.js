@@ -13,6 +13,7 @@ function getSimulatorResults(rows) {
     emiParSecteur.industrie=getLineChartInfos(rows,65,0)
     emiParSecteur.energie=getLineChartInfos(rows,72,0)
     var jaugeDatas = getJauge(rows, 0, 0)
+    console.log(emiParSecteur)
     return {
         emiSecteur: emiSecteur,
         emiSecteurPie: emiSecteurPie,

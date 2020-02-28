@@ -49,6 +49,8 @@ var iInital=i;
 
     }
 
+    return datas
+
 }
 
 module.exports = getLineChartInfos
