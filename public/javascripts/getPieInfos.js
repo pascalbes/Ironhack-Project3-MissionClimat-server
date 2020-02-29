@@ -6,7 +6,8 @@ function getPieInfos(rows, iii, jjjjj) {
     function createData02() {for (let i = 14; i < 24; i ++) {
     datas.data02.push({
         name: rows[i][3],
-        value: rows[i][5]
+        value: formatNombre(rows[i][5]),
+        color : rows[i][4]
     })
     }}
 
@@ -27,8 +28,10 @@ function getPieInfos(rows, iii, jjjjj) {
     function createObjectForDatas() {
     for (let i = 0; i < listSectors.length; i++){
         datas.data01.push(
-        {name : listSectors[i],
-            value: 0}
+        {
+            name : listSectors[i],
+            value: 0
+        }
         )
     }
     }
@@ -42,9 +45,10 @@ function getPieInfos(rows, iii, jjjjj) {
 
     function calculateSectorsValue() {
         for (let i = 14; i < 24; i ++){
-            for (let x = 0; x < 6; x ++) {
+            for (let x = 0; x <= 6; x ++) {
             if (rows[i][2] === datas.data01[x].name) {
                 datas.data01[x].value += formatNombre(rows[i][5]) 
+                datas.data01[x].color = rows[i][4]
             }
             }
         } return datas.data01
