@@ -9,7 +9,7 @@ const {google} = require('googleapis');
 require("dotenv").config();
 
 
-
+//route permettant de dupliquer la sheet master et de renvoyer l'ID de la spreadsheet créée
 router.get("/", (req, res, next) => {
   
     fs.readFile('credentialsGDrive.json', (err, content) => {
@@ -43,16 +43,69 @@ router.get("/", (req, res, next) => {
       }
   
   });
+
+
+//route permettant de récupérer les valeurs des paramètres d'une spreadsheet déjà créée
+  router.get("/values/:id", (req, res, next) => {
+  
+    fs.readFile('credentialsGDrive.json', (err, content) => {
+      if (err) return console.log('Error loading client secret file:', err);
+      // Authorize a client with credentials, then call the Google Drive API.
+      authorize(JSON.parse(content), getInfos);
+    });
+  
+    function authorize(credentials, callback) {
+      const {client_secret, client_id, redirect_uris} = credentials.installed;
+      const oAuth2Client = new google.auth.OAuth2(
+          client_id, client_secret, redirect_uris[0]);
+    
+      // Check if we have previously stored a token.
+      fs.readFile("tokenGDrive.json", (err, token) => {
+          if (err) return getAccessToken(oAuth2Client, callback);
+          oAuth2Client.setCredentials(JSON.parse(token));
+          callback(oAuth2Client);
+      });
+    }
+
+    function formatNumber(number, isPercent) {
+      var numberFormated = number.replace(",", ".")
+      isPercent == 1 ? numberFormated *= 100 : "kikou"
+      return numberFormated
+    }
+  
+    function getInfos(auth) {
+
+      const idSheet=req.params.id
+      const rangeParams = 'Paramètres!E3:I25'
+
+      const sheets = google.sheets({version: 'v4', auth});
+  
+      sheets.spreadsheets.values
+      .get({
+        spreadsheetId: idSheet,
+        range: rangeParams,
+      })
+      .then(response => {
+
+        var rows=response.data.values
+        var values = []
+
+        rows.forEach(row => {
+          !isNaN(Number(row[4].replace(",","."))) ? values.push([formatNumber(row[4],row[0]==="%")]) : values.push([row[4]])
+        })
+
+        console.log(values)
+
+        res.status(200).json({ values: values})
+      })
+      .catch(res.status(500))
+    }
+  
+  })
   
   router.patch("/update/:id", (req, res, next) => {
 
     // ['Avec prolongation de la population'], ['Maintien des inégalités'], [40], [60], [45], [90],30],[18], [50],[30],[50],[2],[60],[80],[500000],[70],[30],[30],[50],[100],[85],[85],[85]
-  
-    const idSheet=req.params.id
-    const values=req.body.values
-    const rangeParams = 'Paramètres!I3:I25'
-    const rangeOutputs = 'Résultats!A1:AN100'
-
   
     const TOKEN_PATH = 'tokenGSheet.json';
   
@@ -98,6 +151,11 @@ router.get("/", (req, res, next) => {
     
     function main(auth) {
   
+      const idSheet=req.params.id
+      const values=req.body.values
+      const rangeParams = 'Paramètres!I3:I25'
+      const rangeOutputs = 'Résultats!A1:AN100'
+
       const sheets = google.sheets({version: 'v4', auth});
   
       sheets.spreadsheets.values.update({
