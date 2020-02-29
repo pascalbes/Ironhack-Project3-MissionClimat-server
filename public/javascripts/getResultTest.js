@@ -165,8 +165,6 @@ function main(auth) {
 
         }
 
-        console.log(datas)
-
     });
 
 }

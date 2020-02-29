@@ -9,7 +9,7 @@ function getJauge(rows, iii,jjj) {
 
 
     function createObjectForEachSector() {
-        for (i =81; i < 88; i ++){
+        for (i =81; i < 87; i ++){
             datas.push(
                 [{
                     "name": rows[i][2],

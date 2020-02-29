@@ -43,8 +43,6 @@ function getPieInfos(rows, iii, jjjjj) {
     function calculateSectorsValue() {
         for (let i = 14; i < 24; i ++){
             for (let x = 0; x < 6; x ++) {
-                console.log(datas.data01[x])
-
             if (rows[i][2] === datas.data01[x].name) {
                 datas.data01[x].value += formatNombre(rows[i][5]) 
             }

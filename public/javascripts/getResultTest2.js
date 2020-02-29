@@ -97,8 +97,6 @@ function main(auth) {
 
         var rows = res.data.values;
 
-        // console.log(rows)
-
         var i=13
         var j=0
 
@@ -127,8 +125,6 @@ function main(auth) {
 
         createListSectors()
 
-        console.log(listSectors)
-
         function createObjectForDatas() {
           for (let i = 0; i < listSectors.length; i++){
             datas.data01.push(
@@ -156,10 +152,6 @@ function main(auth) {
         }
 
         calculateSectorsValue()
-
-        console.log(datas.data01)
-
-        console.log(datas)
 
     });
 
