@@ -173,7 +173,8 @@ router.get("/", (req, res, next) => {
         })
         .then(response => {
           var rows=response.data.values
-          res.status(200).json({ results:getSimulatorResults(rows) })
+          var results = getSimulatorResults(rows)
+          res.status(200).json({ results: results})
         })
         .catch(res.status(500))
       })

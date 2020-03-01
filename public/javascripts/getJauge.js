@@ -12,7 +12,7 @@ function getJauge(rows, i,j) {
 
     let numberOfParameters = 0;
 
-    while (rows[w]) {
+    while (rows[w] && rows[w].length) {
       numberOfParameters += 1
     //   console.log(numberOfParameters)
       w +=1
@@ -22,6 +22,7 @@ function getJauge(rows, i,j) {
 
     function createObjectForEachSector() {
         for (x =0; x < numberOfParameters; x ++){
+            
             datas.push(
                 [{
                     "name": rows[i+x][j+2],
