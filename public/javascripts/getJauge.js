@@ -1,4 +1,7 @@
-function getJauge(rows, iii,jjj) {
+function getJauge(rows, i,j) {
+
+    // i = 81
+    // j= 0
 
     var datas = []
 
@@ -7,24 +10,34 @@ function getJauge(rows, iii,jjj) {
         return number
     }
 
+    
+    let w = i
+
+    while (rows[w][j+2]) {
+      numberOfParameters += 1
+      console.log(numberOfParameters)
+      w +=1
+    }
+
+
 
     function createObjectForEachSector() {
-        for (i =81; i < 87; i ++){
+        for (x =0; x < numberOfParameters; x ++){
             datas.push(
                 [{
-                    "name": rows[i][2],
+                    "name": rows[i+x][j+2],
                     "id": "MGT de CO2",
                     "ranges":[
-                        formatNombre(rows[i][5]),
-                        formatNombre(rows[i][6]),
-                        formatNombre(rows[i][4])
+                        formatNombre(rows[i+x][j+5]),
+                        formatNombre(rows[i+x][j+6]),
+                        formatNombre(rows[i+x][j+4])
                     ],
                     "measures":[
-                        formatNombre(rows[i][3])
+                        formatNombre(rows[i+x][3])
                     ],
                     "markers":[
-                        formatNombre(rows[i][5]),
-                        formatNombre(rows[i][6])
+                        formatNombre(rows[i+x][5]),
+                        formatNombre(rows[i+x][6])
                     ]
                 }]
             )
