@@ -68,7 +68,7 @@ router.get("/", (req, res, next) => {
     }
 
     function formatNumber(number, isPercent) {
-      var numberFormated = number.replace(",", ".")
+      var numberFormated = Number(number.replace(",", "."))
       isPercent == 1 ? numberFormated *= 100 : "kikou"
       return numberFormated
     }
@@ -93,8 +93,6 @@ router.get("/", (req, res, next) => {
         rows.forEach(row => {
           !isNaN(Number(row[4].replace(",","."))) ? values.push([formatNumber(row[4],row[0]==="%")]) : values.push([row[4]])
         })
-
-        console.log(values)
 
         res.status(200).json({ values: values})
       })
