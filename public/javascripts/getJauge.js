@@ -37,7 +37,10 @@ function getJauge(rows, i,j) {
                     "markers":[
                         formatNombre(rows[i+x][5]),
                         formatNombre(rows[i+x][6])
-                    ]
+                    ],
+                    // "color":[
+                    //     rows[i+x][j+7]
+                    // ]
                 }]
             )
         }
