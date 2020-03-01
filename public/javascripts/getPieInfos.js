@@ -13,7 +13,7 @@ function getPieInfos(rows, i, j) {
 
     while (rows[w][j+2]) {
       numberOfParameters += 1
-      console.log(numberOfParameters)
+    //   console.log(numberOfParameters)
       w +=1
     }
 
@@ -43,7 +43,7 @@ function getPieInfos(rows, i, j) {
 
     createListSectors()
 
-    console.log(listSectors)
+    // console.log(listSectors)
 
     function createObjectForDatas() {
     for (let x = 0; x < listSectors.length; x++){
@@ -62,7 +62,7 @@ function getPieInfos(rows, i, j) {
     createObjectForDatas()
 
 
-    console.log(datas.data01)
+    // console.log(datas.data01)
 
     function formatNombre(nb) {
         var number = Number(nb.toString().replace(",", "."))
@@ -76,7 +76,7 @@ function getPieInfos(rows, i, j) {
         for (let x = 0; x < numberOfParameters; x ++){
             for (let y = 0; y < listSectors.length; y ++) {
             if (rows[i+x][j+2] === datas.data01[y].name) {
-                console.log(rows[i+x][j +5])
+                // console.log(rows[i+x][j +5])
                 datas.data01[y].value += formatNombre(rows[i+x][j +5]) 
                 datas.data01[y].color = rows[i+x][j + 4]
             }

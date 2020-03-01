@@ -1,8 +1,5 @@
 function getJauge(rows, i,j) {
 
-    // i = 81
-    // j= 0
-
     var datas = []
 
     function formatNombre(nb) {
@@ -13,9 +10,11 @@ function getJauge(rows, i,j) {
     
     let w = i
 
-    while (rows[w][j+2]) {
+    let numberOfParameters = 0;
+
+    while (rows[w]) {
       numberOfParameters += 1
-      console.log(numberOfParameters)
+    //   console.log(numberOfParameters)
       w +=1
     }
 

@@ -5,7 +5,7 @@ const getJauge = require('./getJauge')
 
 function getSimulatorResults(rows) {
     var emiSecteur = getAreaInfo(rows, 0,0)
-    var emiSecteurPie = getPieInfos(rows, 14, 2)
+    var emiSecteurPie = getPieInfos(rows, 14, 0)
     var emiParSecteur = {};
     emiParSecteur.transports=getLineChartInfos(rows,46,0)
     emiParSecteur.batiments=getLineChartInfos(rows,53,0)
