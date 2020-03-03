@@ -1,5 +1,7 @@
 .env
 node_modules
 public/javascripts/convertSheetToJSON.js
+credentialsGDrive.json
+credentialsGSheet.json
 tokenGDrive.json
 tokenGSheet.json
