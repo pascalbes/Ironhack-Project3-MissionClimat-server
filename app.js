@@ -52,5 +52,6 @@ app.use('/session', require('./routes/auth'))
 app.use('/users', require('./routes/users'));
 app.use('/sheet', require('./routes/gsheet'));
 app.use('/sheet2', require('./routes/gsheet2'));
+app.use('/sheet3', require('./routes/gsheet3'));
 
 module.exports = app;
