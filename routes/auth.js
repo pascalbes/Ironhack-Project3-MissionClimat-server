@@ -10,6 +10,7 @@ router.post("/signup", (req, res, next) => {
     // console.log("file ?", req.file);
     // console.log(req.body);
     var errorMsg = "";
+    console.log(req.body)
     const { email, password, isNewsLetter } = req.body;
     // @todo : best if email validation here or check with a regex in the User model
     if (!password || !email) errorMsg += "Provide email and password.\n";
@@ -25,11 +26,9 @@ router.post("/signup", (req, res, next) => {
   
     const newUser = {
       email,
-      password: hashPass
+      password: hashPass,
+      isNewsLetter
     };
-  
-    // check if an avatar FILE has been posted
-    if (req.file) newUser.avatar = req.file.secure_url;
   
     userModel
       .create(newUser)
@@ -63,7 +62,6 @@ router.post("/signin", (req, res, next) => {
         // let's choose the exposed user below
         const { _id, email, isNewsLetter, scenarios} = user;
         // and only expose non-sensitive inofrmations to the client's state
-        next(
           res.status(200).json({
             currentUser: {
               _id,
@@ -72,7 +70,6 @@ router.post("/signin", (req, res, next) => {
               scenarios
             }
           })
-        );
       });
     })(req, res, next); // IIFE (module) pattern here (see passport documentation)
   });
