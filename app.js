@@ -21,7 +21,7 @@ var corsOptions = {
     credentials: true,
     optionsSuccessStatus: 200
   }
-
+console.log(process.env.FRONTEND_URI);
 app.use(cors(corsOptions))
 
 app.use(logger('dev'));
