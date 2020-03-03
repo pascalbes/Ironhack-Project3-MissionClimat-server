@@ -14,15 +14,6 @@ const session = require("express-session"); //sessions make data persist between
 const passport = require("passport"); // auth library (needs sessions)
 
 var app = express();
-app.use(express.static(path.join(__dirname, 'public')));
-
-var corsOptions = {
-    origin: process.env.FRONTEND_URI,
-    credentials: true,
-    optionsSuccessStatus: 200
-  }
-
-app.use(cors(corsOptions))
 
 app.use(logger('dev'));
 app.use(express.urlencoded({
@@ -41,8 +32,21 @@ app.use(
   })
 );
 
+var corsOptions = {
+    origin: process.env.FRONTEND_URI,
+    credentials: true,
+    optionsSuccessStatus: 200
+  }
+console.log(process.env.FRONTEND_URI);
+app.use(cors(corsOptions))
+
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get("/", (req, res) => {res.send("hello world")})
 
 app.use('/session', require('./routes/auth'))
 app.use('/users', require('./routes/users'));
