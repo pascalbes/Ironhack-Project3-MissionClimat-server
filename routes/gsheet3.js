@@ -18,6 +18,8 @@ router.get("/", (req, res, next) => {
     }
     const keys = JSON.parse(keysEnvVar);
 
+    console.log(keys)
+
     async function main() {
         
         const client = auth.fromJSON(keys);
