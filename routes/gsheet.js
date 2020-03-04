@@ -8,6 +8,89 @@ require("dotenv").config();
 
 
 
+router.get("/download/:id", (req, res, next) => {
+
+  const idSheet = req.params.id
+
+  console.log(idSheet)
+
+  async function main () {
+    
+    const auth = new google.auth.GoogleAuth({
+      // Scopes can be specified either as an array or as a single, space-delimited string.
+      scopes: ['https://www.googleapis.com/auth/drive']
+    });
+
+    const drive = google.drive({version: 'v3', auth});
+
+    var dest = fs.createWriteStream('../../../../../Ironhack');
+    
+    drive.files.export({
+      fileId: idSheet,
+      mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    })
+    .then(response => {
+      //console.log(res))
+      res.status(200).json({ results: response})
+    })
+    .catch(err => console.log(err))
+  }
+  main().catch(res.status(500))
+
+});
+
+
+
+//route permettant de récupérer les valeurs des paramètres d'une spreadsheet déjà créée
+  router.get("/values/:id", (req, res, next) => {
+  
+    // If modifying these scopes, delete token.json.
+  const SCOPES = ['https://www.googleapis.com/auth/drive'];
+  
+    function formatNumber(number, isPercent) {
+      var numberFormated = Number(number.replace(",", "."))
+      isPercent == 1 ? numberFormated *= 100 : "kikou"
+      return numberFormated
+    }
+  
+    async function main () {
+        // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
+        // environment variables.
+        const auth = new google.auth.GoogleAuth({
+          // Scopes can be specified either as an array or as a single, space-delimited string.
+          scopes: ['https://www.googleapis.com/auth/drive']
+        });
+
+        const idSheet=req.params.id
+        const rangeParams = 'Paramètres!E3:I25'
+
+        const sheets = google.sheets({version: 'v4', auth});
+    
+        sheets.spreadsheets.values
+        .get({
+            spreadsheetId: idSheet,
+            range: rangeParams,
+        })
+        .then(response => {
+
+            var rows=response.data.values
+            var values = []
+
+            rows.forEach(row => {
+            !isNaN(Number(row[4].replace(",","."))) ? values.push([formatNumber(row[4],row[0]==="%")]) : values.push([row[4]])
+            })
+
+            res.status(200).json({ values: values})
+        })
+        .catch(res.status(500))
+
+    }
+    main().catch(res.status(500))
+  
+  })
+
+
+
 router.get("/", (req, res, next) => {
 
   async function main () {
