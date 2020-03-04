@@ -7,15 +7,22 @@ const {google} = require('googleapis');
 require("dotenv").config();
 
 
+
 router.get("/", (req, res, next) => {
+
+  console.log("coucou0")
 
   async function main () {
     // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
     // environment variables.
+
+    console.log("coucou1")
     const auth = new google.auth.GoogleAuth({
       // Scopes can be specified either as an array or as a single, space-delimited string.
       scopes: ['https://www.googleapis.com/auth/drive']
     });
+
+    console.log("coucou")
 
     const drive = google.drive({version: 'v3', auth});
 
@@ -27,7 +34,6 @@ router.get("/", (req, res, next) => {
 
     }
     main().catch(res.status(500))
-
 
 });
 
