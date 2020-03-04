@@ -5,7 +5,6 @@ const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
 require("dotenv").config();
-const compute = google.compute('v1');
 
 
 
