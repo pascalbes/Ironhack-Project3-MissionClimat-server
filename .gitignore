@@ -2,3 +2,5 @@
 node_modules
 public/javascripts/convertSheetToJSON.js
 gcredentials.json
+credentialsGSheet.json
+tokenGSheet.json
