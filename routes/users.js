@@ -11,41 +11,81 @@ router.get('/', function(req, res, next) {
 
 
 router.patch('/save', (req, res, next) => {
-    console.log(req.user)
-    console.log(req.body)
+    // console.log(req.user)
+    // console.log(req.body)
     const scenarios = req.user.scenarios
     const scenario = req.body.resultsToSave
+    console.log(scenario.name)
 
-    userModel 
-      .findByIdAndUpdate(req.user._id, {scenarios : [...scenarios, scenario]})
-      .then(APIres => {
-        // APIres.scenarios.push(scenario)
-        console.log(APIres)
-        res.status(200).json({msg: "saved!"});
-        })
-      .catch(err => {
-          console.log("error while saving", err);
-          next(err);
-        });
-
+    userModel
+    .find({"scenarios" : {$elemMatch : {name: `${scenario.name}`}}})
+    .then(APIres => {
+      console.log(APIres)
+      if (APIres.length === 0) {
+        userModel 
+          .findByIdAndUpdate(req.user._id, {scenarios : [...scenarios, scenario]})
+          .then(apires => {
+            // console.log(APIres)
+            res.status(200).json({msg : "Scénario créé."});
+            })
+          .catch(err => {
+              console.log("error while saving", err);
+              next(err);
+            });
+      } else {
+      res.status(200).json({msg : "Scénario déjà existant."})}
+    })
+    .catch(next)
 })
+
+
+router.patch('/edit-scenario', (req, res, next) => {
+  // console.log(req.user)
+  // console.log(req.body)
+  const scenarios = req.user.scenarios
+  const scenario = req.body.resultsToSave
+ 
+      userModel 
+        .findByIdAndUpdate(req.user._id, {scenarios : [...scenarios, scenario]})
+        .then(apires => {
+          // console.log(APIres)
+          res.status(200).json({msg : "Scénario édité."});
+          })
+        .catch(err => {
+            console.log("error while saving", err);
+            next(err);
+          });
+    } 
+)
+
+
+
 
 router.patch('/delete-scenario', (req, res, next) => {
   console.log(req.user);
   const scenarios = req.user.scenarios
   console.log(scenarios);
   console.log(scenarios[req.body.i]);
-  // return res.send("ok")
+
   userModel
-  .findByIdAndUpdate(req.user._id, {$pull: {scenarios : scenarios[req.body.i]}})
-  .then(APIRes => {
-    console.log(APIRes)
-    res.status(200).json({msg: "deleted!"})
+    .findById(req.user._id)
+    .then(APIRes => {
+      var newScenarios = req.user.scenarios.filter(scenario => scenario != scenarios[req.body.i])
+      userModel
+        .findByIdAndUpdate(req.user._id, {scenarios : [...newScenarios]}, {new: true})
+        .then(APIRes2 => {console.log(APIRes2.scenarios); res.status(200).json(APIRes2)})
+        .catch(err => {
+          console.log("error while deleting", err);
+          next(err);
+        });
+    }
+    )
+    .catch(err => {
+      console.log("error while deleting", err);
+      next(err);
+    });
+  
   })
-  .catch(err => {
-    console.log("error while deleting", err);
-    next(err);
-  });
-})
 
 module.exports = router;
+
