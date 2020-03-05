@@ -62,7 +62,7 @@ router.get("/download/:id", (req, res, next) => {
         });
 
         const idSheet=req.params.id
-        const rangeParams = 'Paramètres!E3:I25'
+        const rangeParams = 'Paramètres!E3:I36'
 
         const sheets = google.sheets({version: 'v4', auth});
     
@@ -136,7 +136,7 @@ router.get("/", (req, res, next) => {
         });
 
         const idSheet=req.params.id
-        const rangeParams = 'Paramètres!E3:I25'
+        const rangeParams = 'Paramètres!E3:I36'
 
         const sheets = google.sheets({version: 'v4', auth});
     
@@ -177,7 +177,7 @@ router.get("/", (req, res, next) => {
   
         const idSheet=req.params.id
         const values=req.body.values
-        const rangeParams = 'Paramètres!I3:I25'
+        const rangeParams = 'Paramètres!I3:I36'
         const rangeOutputs = 'Résultats!A1:AN150'
 
         const sheets = google.sheets({version: 'v4', auth});
