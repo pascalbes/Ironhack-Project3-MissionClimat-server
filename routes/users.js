@@ -40,13 +40,16 @@ router.patch('/save', (req, res, next) => {
 
 
 router.patch('/edit-scenario', (req, res, next) => {
-  // console.log(req.user)
-  // console.log(req.body)
+  console.log(req.user)
+  console.log(req.body)
   const scenarios = req.user.scenarios
-  const scenario = req.body.resultsToSave
+  const scenarioToEdit = req.body.resultsToSave
+
+  var newScenarios = scenarios.filter(scenario => scenario.name != scenarioToEdit.name)
+  newScenarios.push(scenarioToEdit)
  
       userModel 
-        .findByIdAndUpdate(req.user._id, {scenarios : [...scenarios, scenario]})
+        .findByIdAndUpdate(req.user._id, {scenarios : [...newScenarios]}, {new : true})
         .then(apires => {
           // console.log(APIres)
           res.status(200).json({msg : "Scénario édité."});
