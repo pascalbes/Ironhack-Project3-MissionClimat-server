@@ -9,15 +9,20 @@ function getSimulatorResults(rows) {
     var emiSecteurPie = getPieInfos(rows, 20, 0)
     var impacts = getImpacts(rows, 44, 0)
     var emiParSecteur = {};
-    // emiParSecteur.transports=getLineChartInfos(rows,46,0)
+    var emiFrance = getLineChartInfos(rows,62,0)
+    var emiMonde = getLineChartInfos(rows,56,0)
+    // emiParSecteur.transports=getLineChartInfos(rows,46,0)getLineChartInfos(rows,46,0)
     // emiParSecteur.batiments=getLineChartInfos(rows,53,0)
     // emiParSecteur.agriculture=getLineChartInfos(rows,59,0)
     // emiParSecteur.industrie=getLineChartInfos(rows,65,0)
     // emiParSecteur.energie=getLineChartInfos(rows,72,0)
     var jaugeDatas = getJauge(rows, 38, 0)
+    console.log(emiFrance, emiMonde)
     return {
         emiSecteur: emiSecteur,
         emiSecteurPie: emiSecteurPie,
+        emiFrance : emiFrance,
+        emiMonde: emiMonde,
         // emiParSecteur: emiParSecteur,
         jaugeDatas: jaugeDatas,
         impacts: impacts

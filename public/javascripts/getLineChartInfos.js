@@ -1,3 +1,17 @@
+function formatNumber(dat, isPercent) {
+  
+    //cas ou dat est un nombre
+    if (!isNaN(Number(dat.replace(",",".")))) {
+      var numberFormated = Number(dat.replace(",", "."))
+      isPercent == 1 ? numberFormated *= 100 : "kikou"
+      return numberFormated
+    }
+    else {
+      return dat
+    }
+
+}
+
 function getLineChartInfos(rows, i, j) {
 
 var iInital=i;
@@ -25,7 +39,7 @@ var iInital=i;
 
     }
 
-    j=5
+    j=4
     var iFinal=i
     i=iInital
 
@@ -40,7 +54,7 @@ var iInital=i;
         dataItem.name = rows[iInital][j]
 
         for (let k=0;k<datas.line.length;k++) {
-            rows[iInital+1+k][j] ? dataItem[datas.line[k].dataKey]=rows[iInital+k+1][j] : "kikou"
+            rows[iInital+1+k][j] ? dataItem[datas.line[k].dataKey]=formatNumber(rows[iInital+k+1][j],0) : "kikou"
         }
 
         datas.data.push(dataItem)
