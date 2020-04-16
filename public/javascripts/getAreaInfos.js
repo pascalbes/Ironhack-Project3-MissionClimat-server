@@ -18,7 +18,7 @@ function getAreaInfos(rows, i,j) {
     var dataItem = {}
     var areaDatas=[];
   
-    while (rows[i][j].length) {
+    while (rows[i][j]) {
       dataItem = {}
       while (rows[i].length) {
         if (i==iLine) {
