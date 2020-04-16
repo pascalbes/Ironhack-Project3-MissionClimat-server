@@ -20,7 +20,10 @@ function getImpacts(rows, i,j) {
         RCP: rows[i+2][4],
         jours35: rows[i+3][4],
         joursSecheresse: rows[i+4][4],
-        reductionEmission2030: rows[i+6][4]
+        reductionEmission2030: rows[i+6][4],
+        emissionMoy: formatNumber(rows[i][7],0),
+        empreinteFr: formatNumber(rows[i+1][7],0),
+        empreinteMonde: formatNumber(rows[i+3][7],0)
     } 
   
     return data
