@@ -180,8 +180,6 @@ router.get("/", (req, res, next) => {
         const rangeParams = 'Paramètres!J3:J37'
         const rangeOutputs = 'Résultats!A1:AN250'
 
-        console.log(values)
-
         const sheets = google.sheets({version: 'v4', auth});
     
         sheets.spreadsheets.values.update({
