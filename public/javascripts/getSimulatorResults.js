@@ -6,6 +6,7 @@ const getImpacts = require('./getImpacts')
 
 function getSimulatorResults(rows) {
     var emiSecteur = getAreaInfo(rows, 0,0)
+    // console.log(emiSecteur.data.data[5])
     var emiSecteurGnl = getAreaInfo(rows, 18,0)
     var emiSecteurPie = getPieInfos(rows, 26, 0)
     var impacts = getImpacts(rows, 51, 0)

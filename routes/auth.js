@@ -7,8 +7,6 @@ const bcryptjs = require("bcryptjs");
 const minPasswordLength = 8;
 
 router.post("/signup", (req, res, next) => {
-    // console.log("file ?", req.file);
-    // console.log(req.body);
     var errorMsg = "";
     console.log(req.body)
     const { email, password, isNewsLetter } = req.body;
@@ -46,22 +44,14 @@ router.post("/signin", (req, res, next) => {
     passport.authenticate("local", (err, user, failureDetails) => {
       if (err || !user) return res.status(403).json("invalid user infos"); // 403 : Forbidden
   
-      /**
-       * req.Login is a passport method
-       * check the doc here : http://www.passportjs.org/docs/login/
-       */
       req.logIn(user, function(err) {
-        /* doc says: When the login operation completes, user will be assigned to req.user. */
+        
         if (err) {
           return res.json({ message: "Something went wrong logging in" });
         }
   
-        // We are now logged in
-        // You may find usefull to send some other infos
-        // dont send sensitive informations back to the client
-        // let's choose the exposed user below
         const { _id, email, isNewsLetter, scenarios} = user;
-        // and only expose non-sensitive inofrmations to the client's state
+        
           res.status(200).json({
             currentUser: {
               _id,
@@ -95,7 +85,5 @@ router.post("/signin", (req, res, next) => {
     res.status(403).json("Unauthorized");
   });
   
-
-
   module.exports = router;
   

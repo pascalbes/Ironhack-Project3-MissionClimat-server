@@ -19,10 +19,12 @@ function getAreaInfos(rows, i,j) {
     var areaDatas=[];
   
     while (rows[i][j]) {
+      
       dataItem = {}
       while (rows[i].length) {
         if (i==iLine) {
           dataItem.name=rows[i][j]
+          
         }
         else {
           if (j==5) {
