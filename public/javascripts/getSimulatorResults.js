@@ -13,6 +13,11 @@ function getSimulatorResults(rows) {
     var emiParSecteur = {};
     var emiFrance = getLineChartInfos(rows,69,0)
     var emiMonde = getLineChartInfos(rows,63,0)
+    var dataFrance = {};
+    dataFrance.batiment={}
+    dataFrance.batiment.text = rows[125][0]
+    dataFrance.batiment.graph1 = getLineChartInfos(rows,127,0)
+    dataFrance.batiment.graph2 = getLineChartInfos(rows,133,0)
     // emiParSecteur.transports=getLineChartInfos(rows,46,0)getLineChartInfos(rows,46,0)
     // emiParSecteur.batiments=getLineChartInfos(rows,53,0)
     // emiParSecteur.agriculture=getLineChartInfos(rows,59,0)
@@ -28,7 +33,8 @@ function getSimulatorResults(rows) {
         emiMonde: emiMonde,
         // emiParSecteur: emiParSecteur,
         jaugeDatas: jaugeDatas,
-        impacts: impacts
+        impacts: impacts,
+        dataFrance: dataFrance
     }
 }
 

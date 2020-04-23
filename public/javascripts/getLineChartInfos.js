@@ -1,7 +1,10 @@
 function formatNumber(dat, isPercent) {
+
+    dat = dat.replace(",",".")
+    dat = dat.replace(/\s/g, '')
   
     //cas ou dat est un nombre
-    if (!isNaN(Number(dat.replace(",",".")))) {
+    if (!isNaN(Number(dat))) {
       var numberFormated = Number(dat.replace(",", "."))
       isPercent == 1 ? numberFormated *= 100 : "kikou"
       return numberFormated
@@ -18,7 +21,6 @@ var iInital=i;
 
     var datas = {}
     
-
     datas.title = rows[i+0][j+1]
     datas.xTitle = rows[i+1][j+1]
     datas.yTitle = rows[i+2][j+1]
@@ -39,7 +41,7 @@ var iInital=i;
 
     }
 
-    j=4
+    j=5
     var iFinal=i
     i=iInital
 
