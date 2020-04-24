@@ -178,7 +178,7 @@ router.get("/", (req, res, next) => {
         const idSheet=req.params.id
         const values=req.body.values
         const rangeParams = 'Paramètres!J3:J37'
-        const rangeOutputs = 'Résultats!A1:AN250'
+        const rangeOutputs = 'Résultats!A1:BB300'
 
         const sheets = google.sheets({version: 'v4', auth});
     

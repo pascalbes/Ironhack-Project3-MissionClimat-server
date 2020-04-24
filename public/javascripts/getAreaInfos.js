@@ -21,7 +21,8 @@ function getAreaInfos(rows, i,j) {
     while (rows[i][j]) {
       
       dataItem = {}
-      while (rows[i].length) {
+      
+      while (rows[i][j]) {
         if (i==iLine) {
           dataItem.name=rows[i][j]
           

@@ -9,21 +9,59 @@ function getSimulatorResults(rows) {
     // console.log(emiSecteur.data.data[5])
     var emiSecteurGnl = getAreaInfo(rows, 18,0)
     var emiSecteurPie = getPieInfos(rows, 26, 0)
+    var jaugeDatas = getJauge(rows, 44, 0)
     var impacts = getImpacts(rows, 51, 0)
     var emiParSecteur = {};
-    var emiFrance = getLineChartInfos(rows,69,0)
-    var emiMonde = getLineChartInfos(rows,63,0)
+
+    // graph area + line (séquestration)
+    
+    var emiFrance = {};
+    emiFrance.sansRupture={}
+    emiFrance.avecRupture={}
+    emiFrance.intro = rows[67][1]
+    // emiFrance.total.graph = getCompoChartInfos(rows,69,0)
+    // emiFrance.total.text = rows[74][1]
+    emiFrance.sansRupture.graph = getAreaInfo(rows, 77,0)
+    emiFrance.sansRupture.text = rows[84][1]
+    emiFrance.avecRupture.graph = getAreaInfo(rows, 89,0)
+    emiFrance.avecRupture.text = rows[96][1]
+    
+    
     var dataFrance = {};
+
     dataFrance.batiment={}
-    dataFrance.batiment.text = rows[125][0]
-    dataFrance.batiment.graph1 = getLineChartInfos(rows,127,0)
-    dataFrance.batiment.graph2 = getLineChartInfos(rows,133,0)
-    // emiParSecteur.transports=getLineChartInfos(rows,46,0)getLineChartInfos(rows,46,0)
-    // emiParSecteur.batiments=getLineChartInfos(rows,53,0)
-    // emiParSecteur.agriculture=getLineChartInfos(rows,59,0)
-    // emiParSecteur.industrie=getLineChartInfos(rows,65,0)
-    // emiParSecteur.energie=getLineChartInfos(rows,72,0)
-    var jaugeDatas = getJauge(rows, 44, 0)
+    dataFrance.batiment.perf={}
+    dataFrance.batiment.chauffage={}
+
+    dataFrance.batiment.intro = rows[102][1]
+    dataFrance.batiment.perf.graph = getAreaInfo(rows,104,0)
+    dataFrance.batiment.perf.text = rows[109][1]
+    dataFrance.batiment.chauffage.graph = getAreaInfo(rows,111,0)
+    dataFrance.batiment.chauffage.text = rows[119][1]
+
+
+    dataFrance.transports={}
+    dataFrance.transports.distance={}
+    dataFrance.transports.emissions={}
+
+    dataFrance.transports.intro = rows[123][1]
+    dataFrance.transports.distance.graph = getAreaInfo(rows,125,0)
+    dataFrance.transports.distance.text = rows[131][1]
+    dataFrance.transports.emissions.graph = getAreaInfo(rows,133,0)
+    dataFrance.transports.emissions.text = rows[141][1]
+
+
+    var emiMonde = {}
+    emiMonde.total = {}
+    emiMonde.empreinte = {}
+    
+    emiMonde.total.intro = rows[204][1]
+    emiMonde.total.graph = getLineChartInfos(rows,206,0)
+    emiMonde.empreinte.text = rows[210][1]
+    emiMonde.empreinte.graph = getLineChartInfos(rows,214,0)
+    emiMonde.empreinte.text = rows[218][1]
+
+    
     
     return {
         emiSecteur: emiSecteur,
