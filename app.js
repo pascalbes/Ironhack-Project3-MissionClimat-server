@@ -8,7 +8,6 @@ const cors = require("cors");
 
 
 require("./config/mongo"); // database connection setup
-require("./config/passport");
 // dependencies injection
 const session = require("express-session"); //sessions make data persist between http calls
 const passport = require("passport"); // auth library (needs sessions)
@@ -46,8 +45,6 @@ app.use(passport.session());
 
 app.get("/", (req, res) => {res.send("hello world")})
 
-app.use('/session', require('./routes/auth'))
-app.use('/users', require('./routes/users'));
 app.use('/sheet', require('./routes/gsheet'));
 
 module.exports = app;
