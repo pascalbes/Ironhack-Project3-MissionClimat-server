@@ -50,6 +50,38 @@ function getSimulatorResults(rows) {
     dataFrance.transports.emissions.graph = getAreaInfo(rows,133,0)
     dataFrance.transports.emissions.text = rows[141][1]
 
+    dataFrance.agriculture={}
+    dataFrance.agriculture.parcelles={}
+    dataFrance.agriculture.emissions={}
+
+    dataFrance.agriculture.intro = rows[146][1]
+    dataFrance.agriculture.parcelles.graph = getAreaInfo(rows,148,0)
+    dataFrance.agriculture.parcelles.text = rows[131][1]
+    dataFrance.agriculture.emissions.graph = getAreaInfo(rows,157,0)
+    dataFrance.agriculture.emissions.text = rows[162][1]
+
+
+    dataFrance.energie={}
+    dataFrance.energie.facteurs={}
+    dataFrance.energie.emissions={}
+
+    dataFrance.energie.intro = rows[166][1]
+    dataFrance.energie.facteurs.graph = getAreaInfo(rows,168,0)
+    dataFrance.energie.facteurs.text = rows[131][1]
+    dataFrance.energie.emissions.graph = getAreaInfo(rows,175,0)
+    dataFrance.energie.emissions.text = rows[180][1]
+
+
+    dataFrance.conso={}
+    dataFrance.conso.quantites={}
+    dataFrance.conso.emissions={}
+
+    dataFrance.conso.intro = rows[183][1]
+    dataFrance.conso.quantites.graph = getAreaInfo(rows,184,0)
+    dataFrance.conso.quantites.text = rows[190][1]
+    dataFrance.conso.emissions.graph = getAreaInfo(rows,193,0)
+    dataFrance.conso.emissions.text = rows[198][1]
+
 
     var emiMonde = {}
     emiMonde.total = {}
@@ -59,7 +91,7 @@ function getSimulatorResults(rows) {
     emiMonde.total.graph = getLineChartInfos(rows,206,0)
     emiMonde.empreinte.text = rows[210][1]
     emiMonde.empreinte.graph = getLineChartInfos(rows,214,0)
-    emiMonde.empreinte.text = rows[218][1]
+    emiMonde.empreinte.text = rows[217][1]
 
     
     
