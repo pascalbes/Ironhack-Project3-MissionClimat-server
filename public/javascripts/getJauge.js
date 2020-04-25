@@ -27,10 +27,7 @@ function getJauge(rows, i,j) {
                 [{
                     "name": rows[i+x][j+2],
                     "id": "MGT de CO2",
-                    "ranges":[
-                        formatNombre(rows[i+x][j+5]),
-                        formatNombre(rows[i+x][j+6]),
-                        formatNombre(rows[i+x][j+4])
+                    "ranges":[formatNombre(rows[i+x][j+5]), formatNombre(rows[i+x][j+6]), formatNombre(rows[i+x][j+4])
                     ],
                     "measures":[
                         formatNombre(rows[i+x][3])

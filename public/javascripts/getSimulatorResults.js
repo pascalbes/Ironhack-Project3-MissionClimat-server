@@ -3,6 +3,7 @@ const getLineChartInfos = require('./getLineChartInfos')
 const getPieInfos = require('./getPieInfos')
 const getJauge = require('./getJauge')
 const getImpacts = require('./getImpacts')
+const getCompoChartInfos = require('./getCompoChartInfos')
 
 function getSimulatorResults(rows) {
     var emiSecteur = getAreaInfo(rows, 0,0)
@@ -16,11 +17,12 @@ function getSimulatorResults(rows) {
     // graph area + line (séquestration)
     
     var emiFrance = {};
+    emiFrance.total={}
     emiFrance.sansRupture={}
     emiFrance.avecRupture={}
     emiFrance.intro = rows[67][1]
-    // emiFrance.total.graph = getCompoChartInfos(rows,69,0)
-    // emiFrance.total.text = rows[74][1]
+    emiFrance.total.graph = getCompoChartInfos(rows,69,0)
+    emiFrance.total.text = rows[74][1]
     emiFrance.sansRupture.graph = getAreaInfo(rows, 77,0)
     emiFrance.sansRupture.text = rows[84][1]
     emiFrance.avecRupture.graph = getAreaInfo(rows, 89,0)
