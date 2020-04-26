@@ -5,6 +5,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require("cors");
+const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 
 
 require("./config/mongo"); // database connection setup
@@ -46,5 +48,7 @@ app.use(passport.session());
 app.get("/", (req, res) => {res.send("hello world")})
 
 app.use('/sheet', require('./routes/gsheet'));
+
+app.use('/contact', require("./routes/contact"))
 
 module.exports = app;
