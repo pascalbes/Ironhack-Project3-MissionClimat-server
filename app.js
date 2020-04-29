@@ -41,6 +41,12 @@ var corsOptions = {
 console.log(process.env.FRONTEND_URI);
 app.use(cors(corsOptions))
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URI);
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
 app.use(passport.initialize());
 app.use(passport.session());
