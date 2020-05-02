@@ -10,8 +10,8 @@ function getSimulatorResults(rows) {
     // console.log(emiSecteur.data.data[5])
     var emiSecteurGnl = getAreaInfo(rows, 17,0)
     
-    var jaugeDatas = getJauge(rows, 25, 0)
-    var impacts = getImpacts(rows, 35, 0)
+    var jaugeDatas = getJauge(rows, 26, 0) // i+1
+    var impacts = getImpacts(rows, 35, 0)// i+1
     var emiParSecteur = {};
 
     // graph area + line (séquestration)
