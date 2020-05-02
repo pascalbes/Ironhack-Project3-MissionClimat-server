@@ -35,7 +35,7 @@ var iInital=i;
 
         datas.line.push({
             dataKey: rows[i][j],
-            stroke: rows[i][j+1],
+            color: rows[i][j+1],
         })
         i++
 

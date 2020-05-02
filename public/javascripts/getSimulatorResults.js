@@ -7,14 +7,10 @@ const getCompoChartInfos = require('./getCompoChartInfos')
 
 function getSimulatorResults(rows) {
     var emiSecteur = getAreaInfo(rows, 0,0)
-    // console.log(emiSecteur.data.data[5])
     var emiSecteurGnl = getAreaInfo(rows, 17,0)
     
     var jaugeDatas = getJauge(rows, 26, 0) // i+1
     var impacts = getImpacts(rows, 35, 0)// i+1
-    var emiParSecteur = {};
-
-    // graph area + line (séquestration)
     
     var emiFrance = {};
 
@@ -52,8 +48,6 @@ function getSimulatorResults(rows) {
     var dataFrance = {};
 
     dataFrance.batiment={}
-    dataFrance.batiment.perf={}
-    dataFrance.batiment.chauffage={}
 
     dataFrance.batiment.intro = rows[104][1]
 
@@ -73,8 +67,6 @@ function getSimulatorResults(rows) {
 
 
     dataFrance.transports={}
-    // dataFrance.transports.distance={}
-    // dataFrance.transports.emissions={}
 
     dataFrance.transports.intro = rows[126][1]
 
@@ -94,8 +86,6 @@ function getSimulatorResults(rows) {
 
 
     dataFrance.agriculture={}
-    dataFrance.agriculture.parcelles={}
-    dataFrance.agriculture.emissions={}
 
     dataFrance.agriculture.intro = rows[152][1]
 
@@ -114,33 +104,29 @@ function getSimulatorResults(rows) {
     }
 
     dataFrance.conso={}
-    dataFrance.conso.quantites={}
-    dataFrance.conso.emissions={}
 
     dataFrance.conso.intro = rows[176][1]
 
-    dataFrance.conso.quantites = {
+    dataFrance.conso.emissions = {
         graph: getAreaInfo(rows,178,0),
         subtitle: rows[183][1],
         text: rows[184][1],
         source:rows[185][1]
     }
 
-    dataFrance.conso.emissions = {
-        graph: getAreaInfo(rows,187,0),
+    dataFrance.conso.quantites = {
+        graph: getLineChartInfos(rows,187,0),
         subtitle: rows[191][1],
         text: rows[192][1],
         source:rows[193][1]
     }
     
     dataFrance.energie={}
-    dataFrance.energie.facteurs={}
-    dataFrance.energie.emissions={}
 
     dataFrance.energie.intro = rows[198][1]
 
     dataFrance.energie.facteurs = {
-        graph: getAreaInfo(rows,200,0),
+        graph: getLineChartInfos(rows,200,0),
         subtitle: rows[203][1],
         text: rows[204][1],
         source:rows[205][1]
@@ -153,21 +139,21 @@ function getSimulatorResults(rows) {
         source:rows[212][1]
     }
 
-
-    
-
-
-    var emiMonde = {}
-    emiMonde.total = {}
-    emiMonde.empreinte = {}
-    
-    emiMonde.total.intro = rows[204][1]
-    emiMonde.total.graph = getLineChartInfos(rows,206,0)
-    emiMonde.empreinte.text = rows[210][1]
-    emiMonde.empreinte.graph = getLineChartInfos(rows,214,0)
-    emiMonde.empreinte.text = rows[217][1]
-
-    
+    var emiMonde = {
+        intro: rows[218][1],
+        total : {
+            graph: getLineChartInfos(rows,219,0),
+            subtitle: rows[222][1],
+            text: rows[223][1],
+            source:rows[224][1]
+        },
+        empreinte : {
+            graph: getLineChartInfos(rows,227,0),
+            subtitle: rows[230][1],
+            text: rows[231][1],
+            source:rows[232][1]
+        }
+    }
     
     return {
         emiSecteur: emiSecteur,
