@@ -20,6 +20,9 @@ app.use(logger('dev'));
 app.use(express.urlencoded({
   extended: true
 }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.json());
 // app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
@@ -55,6 +58,6 @@ app.get("/", (req, res) => {res.send("hello world")})
 
 app.use('/sheet', require('./routes/gsheet'));
 
-app.use('/contact', require("./routes/contact"))
+app.use('/email', require("./routes/email"))
 
 module.exports = app;
