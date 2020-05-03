@@ -154,6 +154,22 @@ function getSimulatorResults(rows) {
             source:rows[232][1]
         }
     }
+
+    impacts.temperatures = {
+        intro: rows[236][1],
+        europe: {
+            title: rows[238][1], 
+            subtitle: rows[239][1], 
+            text: rows[240][1],
+            source: rows[241][1]
+        },
+        world: {
+            title: rows[243][1],
+            subtitle: rows[244][1], 
+            text: rows[245][1],
+            source: rows[246][1]
+        }
+    }
     
     return {
         emiSecteur: emiSecteur,

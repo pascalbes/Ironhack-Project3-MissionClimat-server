@@ -13,6 +13,9 @@ function formatNumber(dat, isPercent) {
 }
 
 function getImpacts(rows, i,j) {
+
+    var reduc = "";
+    rows[i+6][4][0] === '-' ? reduc = rows[i+6][4] + '': reduc = "+" + rows[i+6][4];
     
     var data = {
         temperature: formatNumber(rows[i][4],0),
@@ -20,7 +23,7 @@ function getImpacts(rows, i,j) {
         RCP: rows[i+2][4],
         jours35: rows[i+3][4],
         joursSecheresse: rows[i+4][4],
-        reductionEmission2030: rows[i+6][4],
+        reductionEmission2030: reduc,
         texteSynthese: rows[i+7][4],
         emissionMoy: formatNumber(rows[i][7],0),
         empreinteFr: formatNumber(rows[i+1][7],0),
