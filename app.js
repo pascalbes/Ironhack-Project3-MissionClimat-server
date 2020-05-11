@@ -37,7 +37,7 @@ app.use(
 );
 
 var corsOptions = {
-    origin: process.env.FRONTEND_URI,
+    origin: [process.env.FRONTEND_URI,process.env.FRONTEND_URL_SECURE],
     credentials: true,
     optionsSuccessStatus: 200
   }
