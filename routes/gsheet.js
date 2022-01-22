@@ -6,6 +6,8 @@ const readline = require('readline');
 const {google} = require('googleapis');
 require("dotenv").config();
 
+const nbLinesParametersSheet = process.env.SPREADSHEET_PARAMETERS_NB_LINES
+
 
 router.get("/download/:id", (req, res, next) => {
 
@@ -95,7 +97,7 @@ router.get("/", (req, res, next) => {
         });
 
         const idSheet=req.params.id
-        const rangeParams = 'Paramètres!F3:J27'
+        const rangeParams = 'Paramètres!F3:J' + nbLinesParametersSheet
 
         const sheets = google.sheets({version: 'v4', auth});
     
@@ -106,11 +108,11 @@ router.get("/", (req, res, next) => {
         })
         .then(response => {
 
-            var rows=response.data.values
-            var values = []
+            var rows=response.data.values;
+            var values = [];
 
             rows.forEach(row => {
-            !isNaN(Number(row[4].replace(",","."))) ? values.push([formatNumber(row[4],row[0]==="%")]) : values.push([row[4]])
+              !isNaN(Number(row[4].replace(",","."))) ? values.push([formatNumber(row[4],row[0]==="%")]) : values.push([row[4]])
             })
 
             res.status(200).json({ values: values})
@@ -136,7 +138,7 @@ router.get("/", (req, res, next) => {
   
         const idSheet=req.params.id
         const values=req.body.values
-        const rangeParams = 'Paramètres!J3:J27'
+        const rangeParams = 'Paramètres!J3:J' + nbLinesParametersSheet
         const rangeOutputs = 'Résultats!A1:BB300'
 
         const sheets = google.sheets({version: 'v4', auth});
@@ -181,7 +183,7 @@ router.get("/", (req, res, next) => {
   
         const idSheet=req.params.id
         const values=req.body.values
-        const rangeParams = 'Paramètres!J3:J27'
+        const rangeParams = 'Paramètres!J3:J' + nbLinesParametersSheet
 
         const sheets = google.sheets({version: 'v4', auth});
     
