@@ -6,7 +6,7 @@ const readline = require('readline');
 const {google} = require('googleapis');
 require("dotenv").config();
 
-const nbLinesParametersSheet = process.env.SPREADSHEET_PARAMETERS_NB_LINES
+const nbLinesParametersSheet = process.env.SPREADSHEET_PARAMETERS_NB_LINES;
 
 
 router.get("/download/:id", (req, res, next) => {
