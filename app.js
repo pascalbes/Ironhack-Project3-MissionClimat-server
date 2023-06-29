@@ -1,20 +1,18 @@
 require("dotenv").config();
-require("./config/dbConnection");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const cors = require("cors");
-const bodyParser = require("body-parser");
-const nodemailer = require("nodemailer");
+var enforce = require('express-sslify');
 
-require("./config/mongo"); // database connection setup
-// dependencies injection
+
 const session = require("express-session"); //sessions make data persist between http calls
 const passport = require("passport"); // auth library (needs sessions)
 
 var app = express();
 
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(logger("dev"));
 
 app.use(express.json());
@@ -52,7 +50,6 @@ app.use(
 //   // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //   next();
 // });
-
 
 app.get("/", (req, res) => {
   res.send("hello world");
