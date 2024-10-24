@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www.js -e js"
+    "dev": "nodemon ./bin/www.js -e js",
+    "build-react": "cd ../client && npm run build && cp -r build/* ../server/public"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -12,9 +13,10 @@
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "express": "~4.16.1",
     "express-session": "^1.17.0",
+    "express-sslify": "^1.2.0",
     "google-auth-library": "^5.10.1",
     "googleapis": "^47.0.0",
     "http-errors": "~1.6.3",
